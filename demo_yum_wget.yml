@@ -1,6 +1,7 @@
-- name: Hello World Sample
-  hosts: all
+---
+- hosts: all
   tasks:
-    - name: Hello Message
-      debug:
-        msg: "Hello World!"
+  - name: install a yum package in ansible
+    yum:
+      name: wget
+      state: present
