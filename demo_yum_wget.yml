@@ -1,7 +1,6 @@
-- name: awx demo playbook
+- name: Hello World Sample
   hosts: all
   tasks:
-    - name: install the latest version of wget
-      yum:
-      	name: wget
-      	state: latest
+    - name: Hello Message
+      debug:
+        msg: "Hello World!"
