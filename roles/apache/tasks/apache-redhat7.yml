@@ -1,0 +1,34 @@
+---
+#
+# Install apache on Red Hat 7
+#
+
+#- name: Include repos
+#  include_role:
+#    name: repos
+
+- name: List available and installed  versions of apache
+  yum:
+    list: "{{ apache_packages }}"
+  register: apache_yum_output
+
+- debug: var=apache_yum_output
+
+- name: Install apache for RHEL 7
+  yum:
+    name: "{{ apache_packages }}"
+    state: latest
+    update_cache: true
+
+- name: Start apache service
+  systemd:
+    name: "{{ apache_service }}"
+    enabled: yes
+    state: started
+
+- name: Verify apache status for RHEL 7
+  service_facts:
+
+- name: Latest Installed apache version status for RHEL 7
+  debug:
+    var: ansible_facts.services['httpd.service']

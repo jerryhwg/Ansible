@@ -1,0 +1,4 @@
+ansible_enable: True
+apache_role_enable: True
+apache_packages: httpd
+apache_service: httpd.service

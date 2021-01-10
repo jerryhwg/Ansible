@@ -1,0 +1,26 @@
+---
+#
+# Install apache on Red Hat 6
+#
+
+- name: List available and installed  versions of apache
+  yum:
+    list: "{{ apache_packages }}"
+  register: apache_yum_output
+
+- debug: var=apache_yum_output
+
+- name: Install apache for RHEL 6
+  yum:
+    name: "{{ apache_packages }}"
+    state: latest
+    update_cache: true
+
+- name: Verify apache status for RHEL 6
+  service:
+    name: "{{ apache_service }}"
+    state: started
+  register: apache_status
+
+- name: Latest Installed apache version status for RHEL 6
+  debug: var=apache_status
