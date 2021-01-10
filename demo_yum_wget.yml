@@ -1,7 +1,0 @@
----
-- hosts: all
-  tasks:
-  - name: install a yum package in ansible
-    yum:
-      name: wget
-      state: present
